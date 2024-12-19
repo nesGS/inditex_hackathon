@@ -2,29 +2,40 @@ version: '3.8'
 
 services:
   app:
+    # Indica que la imagen del contenedor se construirá a partir de un Dockerfile que está en la carpeta actual (.).
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    # depends_on: Asegura que el contenedor mysql se inicie antes que app
     depends_on:
       - mysql
+    # Conecta el servicio app a la red inditex_network para que pueda comunicarse con otros servicios, como mysql.
     networks:
       - inditex_network
+    # restart: always: Hace que el contenedor se reinicie automáticamente si falla o si Docker se reinicia.
     restart: always
 
   mysql:
+    # image: mysql:8.0: Usa la imagen oficial de MySQL en la versión 8.0.
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: inditex             
-      MYSQL_PASSWORD: root                   
-      MYSQL_ROOT_PASSWORD: root              
+      MYSQL_DATABASE: inditex    # Crea automáticamente una base de datos llamada inditex.  \
+      MYSQL_PASSWORD: root       # Define la contraseña del usuario por defecto.             \  Estos campos deben
+      MYSQL_ROOT_PASSWORD: root  # Define la contraseña para el usuario root                 /   coincidir con los
+      MYSQL_USER: root           # Define el nombre del usuario por defecto.                /      .properties
     ports:
-      - "3306:3306"                          
+      - "3306:3306"
+    # Conecta el servicio mysql a la red inditex_network.
     networks:
       - inditex_network
+    # Reinicia el contenedor automáticamente si falla.
     restart: always
 
+# Define una red personalizada llamada inditex_network.
 networks:
   inditex_network:
+    # Bridge es el tipo de red más común en Docker. Permite que los contenedores conectados se comuniquen entre sí usando
+    # nombres de servicio como mysql o app.
     driver: bridge
