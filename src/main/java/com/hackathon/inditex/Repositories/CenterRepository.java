@@ -1,7 +1,13 @@
 package com.hackathon.inditex.Repositories;
 
 import com.hackathon.inditex.Entities.Center;
-import org.springframework.data.repository.CrudRepository;
+import com.hackathon.inditex.Entities.Coordinates;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CenterRepository extends CrudRepository<Center, Long> {
+@Repository
+public interface CenterRepository extends JpaRepository<Center, Long> {
+
+    boolean existsByCoordinates(Coordinates coordinates);
+
 }
