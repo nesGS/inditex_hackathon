@@ -36,6 +36,9 @@ public class OrderController {
         return ResponseEntity.ok(orders);
     }
 
+/////////////////////////////////////////////////////////////////////////////
+///// BUSCAR ALTERNATIVA A LA CLASE ESTÁTICA PARA GESTIONAR LA RESPUESTA ////
+////////////////////////////////////////////////////////////////////////////
 
 
     // Clase que gestiona el formato solicitado para la respuesta en "createOrder"
@@ -58,4 +61,18 @@ public class OrderController {
             this.message = "Order created successfully in PENDING status.";
         }
     }
+
+    @PostMapping("/order-assignations")
+    public ResponseEntity<Order> orderAssignations() {
+
+        // Asignar centros a los pedidos en función del tamaño
+
+
+        return null;
+    }
+
+
+
+
+
 }

@@ -23,7 +23,7 @@ public class CenterController {
     public ResponseEntity<?> createCenter(@RequestBody CreateCenterDto createCenterDto) {
         // Validación: currentLoad no puede exceder maxCapacity
         if (createCenterDto.getCurrentLoad() > createCenterDto.getMaxCapacity()) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.internalServerError()
                     .body(new ApiResponse("Current load cannot exceed max capacity."));
         }
 
@@ -31,7 +31,7 @@ public class CenterController {
         boolean centerExists = centerService.existsByCoordinates(
                 createCenterDto.getCoordinates());
         if (centerExists) {
-            return ResponseEntity.badRequest()
+            return ResponseEntity.internalServerError()
                     .body(new ApiResponse("There is already a logistics center in that position."));
         }
 
