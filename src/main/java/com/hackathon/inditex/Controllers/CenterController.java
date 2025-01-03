@@ -80,6 +80,13 @@ public class CenterController {
         return centerService.deleteCenter(id) ? ResponseEntity.ok(response) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    private static class ApiResponse {
+        public String message;
+
+        public ApiResponse(String message) {
+            this.message = message;
+        }
+    }
 
 }
 
