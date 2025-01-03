@@ -1,7 +1,10 @@
 package com.hackathon.inditex.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +26,8 @@ public class Center {
 
     @Embedded
     private Coordinates coordinates;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "assignedCenter")
+    private List<Order> assignedOrders;
 }

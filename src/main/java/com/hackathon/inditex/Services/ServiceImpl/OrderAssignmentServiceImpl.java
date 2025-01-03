@@ -1,6 +1,7 @@
 package com.hackathon.inditex.Services.ServiceImpl;
 
 import com.hackathon.inditex.Entities.Center;
+import com.hackathon.inditex.Entities.Coordinates;
 import com.hackathon.inditex.Entities.Order;
 import com.hackathon.inditex.Repositories.CenterRepository;
 import com.hackathon.inditex.Repositories.OrderRepository;
@@ -85,11 +86,11 @@ public class OrderAssignmentServiceImpl implements OrderAssignmentService {
         return centers.stream().anyMatch(center -> center.getCapacity().contains(order.getSize()));
     }
 
-    private double calculateDistance(Map<String, Double> coord1, Map<String, Double> coord2) {
-        double lat1 = Math.toRadians(coord1.get("latitude"));
-        double lon1 = Math.toRadians(coord1.get("longitude"));
-        double lat2 = Math.toRadians(coord2.get("latitude"));
-        double lon2 = Math.toRadians(coord2.get("longitude"));
+    private double calculateDistance(Coordinates coord1, Coordinates coord2) {
+        double lat1 = Math.toRadians(coord1.getLatitude());
+        double lon1 = Math.toRadians(coord1.getLongitude());
+        double lat2 = Math.toRadians(coord2.getLatitude());
+        double lon2 = Math.toRadians(coord2.getLongitude());
 
         double dlon = lon2 - lon1;
         double dlat = lat2 - lat1;

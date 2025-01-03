@@ -17,7 +17,9 @@ public class Order {
 
     private String status;
 
-    private String assignedCenter;
+    @ManyToOne
+    @JoinColumn(name = "assigned_center_id")
+    private Center assignedCenter;
 
     @Embedded
     private Coordinates coordinates;

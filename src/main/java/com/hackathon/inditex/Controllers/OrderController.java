@@ -55,24 +55,14 @@ public class OrderController {
             this.orderId = order.getId();
             this.customerId = order.getCustomerId();
             this.size = order.getSize();
-            this.assignedLogisticsCenter = order.getAssignedCenter();
+            this.assignedLogisticsCenter = (order.getAssignedCenter() != null)
+                    ? order.getAssignedCenter().getName()
+                    : null;
             this.coordinates = order.getCoordinates();
             this.status = order.getStatus();
             this.message = "Order created successfully in PENDING status.";
         }
     }
-
-    @PostMapping("/order-assignations")
-    public ResponseEntity<Order> orderAssignations() {
-
-        // Asignar centros a los pedidos en función del tamaño
-
-
-        return null;
-    }
-
-
-
 
 
 }
