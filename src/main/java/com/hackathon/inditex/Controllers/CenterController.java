@@ -64,7 +64,7 @@ public class CenterController {
                         .body(new ApiResponse("Current load cannot exceed max capacity."));
             }
             
-            ApiResponse response = new ApiResponse("Center updated successfully");
+            ApiResponse response = new ApiResponse("Logistics center updated successfully.");
             return ResponseEntity.ok(response);
         } else {
             ApiResponse response = new ApiResponse("Center not found");
