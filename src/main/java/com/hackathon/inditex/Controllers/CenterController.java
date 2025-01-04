@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/centers")
 public class CenterController {
 
@@ -37,9 +38,10 @@ public class CenterController {
 
         // Creación de Center
         Center createdCenter = centerService.createCenter(createCenterDto)
-                .orElseThrow(() -> new RuntimeException("Unexpected error occurred while creating the center"));
+                .orElseThrow(() -> new RuntimeException("Unexpected error occurred while creating the center."));
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Logistics center created successfully."));
     }
+
 
     @GetMapping
     public ResponseEntity<List<Center>> getAllCenters() {
@@ -67,7 +69,7 @@ public class CenterController {
             ApiResponse response = new ApiResponse("Logistics center updated successfully.");
             return ResponseEntity.ok(response);
         } else {
-            ApiResponse response = new ApiResponse("Center not found");
+            ApiResponse response = new ApiResponse("Center not found.<");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
