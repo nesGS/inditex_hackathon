@@ -69,7 +69,7 @@ public class CenterController {
             ApiResponse response = new ApiResponse("Logistics center updated successfully.");
             return ResponseEntity.ok(response);
         } else {
-            ApiResponse response = new ApiResponse("Center not found.<");
+            ApiResponse response = new ApiResponse("Center not found.");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
